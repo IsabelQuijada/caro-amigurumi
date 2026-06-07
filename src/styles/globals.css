@@ -1,0 +1,204 @@
+/* =============================================
+   CAROLINA QUIJADA — Amigurumi Website
+   ============================================= */
+
+/* --- Reset & Base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream:        #FEF8F0;
+  --cream-warm:   #FAF0E4;
+  --linen:        #F3E8D6;
+  --blush:        #FDF2F2;
+
+  --terracotta:   #C8674A;
+  --terra-lt:     #E8956E;
+  --terra-deep:   #A04535;
+  --terra-glow:   rgba(200,103,74,.15);
+
+  --sage:         #7A9E7E;
+  --sage-lt:      #ADC9B0;
+
+  --rose:         #D4A5A5;
+  --rose-pale:    #F5E4E4;
+
+  --espresso:     #271308;
+  --brown:        #3A2418;
+  --brown-warm:   #6B4433;
+  --brown-mid:    #9A6B55;
+  --brown-lt:     #C09880;
+
+  --peach:        #F2C4A0;
+  --gold:         #E8B870;
+  --amber:        #F5D89A;
+
+  --font-serif:  'Playfair Display', Georgia, serif;
+  --font-sans:   'DM Sans', system-ui, sans-serif;
+  --font-script: 'Dancing Script', cursive;
+
+  --r-xs:   8px;
+  --r-sm:   14px;
+  --r-md:   22px;
+  --r-lg:   32px;
+  --r-xl:   48px;
+  --r-full: 999px;
+
+  --shadow-sm: 0 4px 16px rgba(58,36,24,.07);
+  --shadow:    0 8px 32px rgba(58,36,24,.1);
+  --shadow-md: 0 20px 60px rgba(58,36,24,.14);
+  --shadow-lg: 0 32px 80px rgba(58,36,24,.18);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--cream);
+  color: var(--brown);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+a   { color: inherit; text-decoration: none; }
+
+/* --- Skip link (accessibility) --- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--terracotta);
+  color: #fff;
+  padding: .6rem 1.2rem;
+  border-radius: var(--r-sm);
+  font-size: .85rem;
+  font-weight: 600;
+  transition: top .2s;
+}
+.skip-link:focus { top: 1rem; }
+
+/* --- Typography helpers --- */
+.section-label {
+  font-family: var(--font-sans);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  margin-bottom: .9rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--terracotta);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--brown);
+}
+.section-title em {
+  font-style: italic;
+  color: var(--terracotta);
+  font-weight: 600;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .9rem 2.2rem;
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: .9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all .28s cubic-bezier(.4,0,.2,1);
+  letter-spacing: .01em;
+}
+.btn--primary {
+  background: var(--terracotta);
+  color: #fff;
+  border-color: var(--terracotta);
+  box-shadow: 0 4px 18px rgba(200,103,74,.32);
+}
+.btn--primary:hover {
+  background: var(--terra-deep);
+  border-color: var(--terra-deep);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(200,103,74,.38);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--brown-warm);
+  border-color: rgba(58,36,24,.25);
+}
+.btn--ghost:hover {
+  background: var(--terracotta);
+  color: #fff;
+  border-color: var(--terracotta);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(200,103,74,.28);
+}
+.btn--full { width: 100%; justify-content: center; }
+
+/* --- Animations --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s cubic-bezier(.4,0,.2,1), transform .65s cubic-bezier(.4,0,.2,1);
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.work-card:nth-child(1) { transition-delay: 0s; }
+.work-card:nth-child(2) { transition-delay: .08s; }
+.work-card:nth-child(3) { transition-delay: .16s; }
+.work-card:nth-child(4) { transition-delay: .24s; }
+.work-card:nth-child(5) { transition-delay: .32s; }
+
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .55; transform: scale(.85); }
+}
+@keyframes morph {
+  0%,100% { border-radius: 45% 55% 50% 50% / 50% 50% 55% 45%; }
+  33%      { border-radius: 55% 45% 45% 55% / 55% 45% 55% 45%; }
+  66%      { border-radius: 50% 50% 55% 45% / 45% 55% 45% 55%; }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+@keyframes scroll-drop {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  40%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  60%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-in { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}

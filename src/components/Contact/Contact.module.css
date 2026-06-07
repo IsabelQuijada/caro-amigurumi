@@ -1,0 +1,52 @@
+.contact {
+  padding: 4rem 6%;
+  background: var(--cream-warm);
+}
+
+.ribbon {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: .9rem;
+}
+
+.desc {
+  color: var(--brown-mid);
+  line-height: 1.8;
+  font-size: .97rem;
+  max-width: 80ch;
+}
+
+.waBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  background: var(--terracotta);
+  color: #fff;
+  padding: .95rem 2.4rem;
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: .95rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  text-decoration: none;
+  transition: all .28s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 4px 20px rgba(200,103,74,.3);
+  white-space: nowrap;
+  margin-top: .4rem;
+  min-height: 44px;
+}
+
+.waBtn:hover {
+  background: var(--terra-deep);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(200,103,74,.38);
+}
+
+.waBtn:focus-visible {
+  outline: 3px solid var(--terracotta);
+  outline-offset: 3px;
+}

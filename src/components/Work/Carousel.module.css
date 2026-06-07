@@ -1,0 +1,123 @@
+.carousel {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  outline: none;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
+}
+.carousel:focus-visible {
+  box-shadow: inset 0 0 0 3px rgba(200,103,74,.6);
+}
+
+.track {
+  display: flex;
+  height: 100%;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+
+.slide {
+  flex-shrink: 0;
+  height: 100%;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: rgba(254,248,240,.85);
+  backdrop-filter: blur(8px);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: .95rem;
+  cursor: pointer;
+  color: var(--brown);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transition: opacity .3s ease, background .2s ease, transform .2s ease;
+}
+.btnPrev { left: .85rem; }
+.btnNext { right: .85rem; }
+
+:global(.work-card):hover .btn { opacity: 1; }
+.btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.1);
+}
+.btn:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--terracotta);
+  outline-offset: 2px;
+}
+
+.dots {
+  position: absolute;
+  bottom: 7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: .45rem;
+  z-index: 5;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.45);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: background .22s, transform .22s;
+  min-width: 16px;
+  min-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dot::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.45);
+  transition: background .22s, transform .22s;
+}
+.dotActive::after {
+  background: #fff;
+  transform: scale(1.35);
+}
+.dot:focus-visible {
+  outline: 2px solid rgba(255,255,255,.8);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+.progressWrap {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(255,255,255,.15);
+  z-index: 5;
+}
+.progressBar {
+  height: 100%;
+  background: var(--terra-lt);
+  border-radius: 0 2px 2px 0;
+  transition: width .4s ease;
+}
+
+@media (max-width: 640px) {
+  .btn { width: 44px; height: 44px; }
+}
