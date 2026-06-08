@@ -1,7 +1,7 @@
 import { useFadeIn } from '../../hooks/useFadeIn';
 import styles from './Contact.module.css';
 
-const WA_NUMBER = '523322360838';
+const WA_NUMBER = 'PENDIENTE_NUMERO_WHATSAPP';
 const WA_TEXT   = encodeURIComponent('Hola Carolina! Vi tu trabajo y me encantó 🧶');
 
 export default function Contact() {

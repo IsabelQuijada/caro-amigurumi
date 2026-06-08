@@ -18,7 +18,7 @@ export default function Footer() {
           <a href="#contact">Contacto</a>
         </nav>
 
-        <p className={styles.copy}>© 2026 Carolina Quijada. Todos los derechos reservados.</p>
+        <p className={styles.copy}>©  2026 Carolina Quijada ♥. Todos los derechos reservados.</p>
       </div>
     </footer>
   );
