@@ -10,15 +10,14 @@ export default function Contact() {
   return (
     <section className={styles.contact} id="contact" aria-labelledby="contact-heading">
       <div className={styles.ribbon} ref={ref}>
-        <p className="section-label" style={{ justifyContent: 'center' }}>Contacto</p>
+        <p className={`section-label ${styles.label}`}>Contacto</p>
 
         <h2 id="contact-heading" className="section-title">
           ¿Tienes algo especial <em>en mente?</em>
         </h2>
 
         <p className={styles.desc}>
-          Pedidos personalizados, preguntas sobre mi trabajo, o simplemente platicar de estambre —
-          estoy aquí con mucho gusto.
+          Pedidos personalizados, preguntas sobre mi trabajo, o simplemente platicar de estambre — estoy aquí con mucho gusto.
         </p>
 
         <a

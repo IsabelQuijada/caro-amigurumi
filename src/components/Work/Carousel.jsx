@@ -1,17 +1,26 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useCarousel } from '../../hooks/useCarousel';
 import styles from './Carousel.module.css';
 
-export default function Carousel({ slides, visible = 1, hasProgress, hasDots, label }) {
-  const { current, goTo, next, prev, startAuto, stopAuto, progressPct } =
-    useCarousel(slides.length, visible);
+export default function Carousel({ slides, label, onIndexChange }) {
+  const { current, next, prev, startAuto, stopAuto, progressPct } =
+    useCarousel(slides.length);
+
+  useEffect(() => { onIndexChange?.(current); }, [current, onIndexChange]);
 
   // Touch / swipe
   const touchStartX = useRef(0);
-  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const touchStartY = useRef(0);
+  const onTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
   const onTouchEnd   = (e) => {
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40) { stopAuto(); diff > 0 ? next() : prev(); }
+    const diffX = touchStartX.current - e.changedTouches[0].clientX;
+    const diffY = touchStartY.current - e.changedTouches[0].clientY;
+    const isHorizontalSwipe = Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY) * 1.25;
+
+    if (isHorizontalSwipe) { stopAuto(); diffX > 0 ? next() : prev(); }
   };
 
   // Keyboard navigation
@@ -19,8 +28,6 @@ export default function Carousel({ slides, visible = 1, hasProgress, hasDots, la
     if (e.key === 'ArrowRight') { stopAuto(); next(); }
     if (e.key === 'ArrowLeft')  { stopAuto(); prev(); }
   };
-
-  const slideWidth = `${100 / visible}%`;
 
   return (
     <div
@@ -38,13 +45,12 @@ export default function Carousel({ slides, visible = 1, hasProgress, hasDots, la
         className={styles.track}
         aria-live="polite"
         aria-atomic="true"
-        style={{ transform: `translateX(-${current * (100 / visible)}%)` }}
+        style={{ transform: `translateX(-${current * 100}%)` }}
       >
         {slides.map((slide, i) => (
           <div
             key={i}
             className={styles.slide}
-            style={{ width: slideWidth }}
             aria-hidden={i !== current}
           >
             <img
@@ -58,42 +64,27 @@ export default function Carousel({ slides, visible = 1, hasProgress, hasDots, la
 
       <button
         className={`${styles.btn} ${styles.btnPrev}`}
-        onClick={() => { stopAuto(); prev(); }}
+        onClick={(e) => { e.stopPropagation(); stopAuto(); prev(); }}
         aria-label="Imagen anterior"
       >
         ←
       </button>
       <button
         className={`${styles.btn} ${styles.btnNext}`}
-        onClick={() => { stopAuto(); next(); }}
+        onClick={(e) => { e.stopPropagation(); stopAuto(); next(); }}
         aria-label="Imagen siguiente"
       >
         →
       </button>
 
-      {hasDots && (
-        <div className={styles.dots} role="tablist" aria-label="Navegación de imágenes">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              role="tab"
-              aria-selected={i === current}
-              aria-label={`Imagen ${i + 1}`}
-              className={`${styles.dot} ${i === current ? styles.dotActive : ''}`}
-              onClick={() => { stopAuto(); goTo(i); }}
-            />
-          ))}
-        </div>
-      )}
+      <div className={styles.counter} aria-hidden="true">{current + 1} / {slides.length}</div>
 
-      {hasProgress && (
-        <div className={styles.progressWrap} aria-hidden="true">
-          <div
-            className={styles.progressBar}
-            style={{ width: `${progressPct}%` }}
-          />
-        </div>
-      )}
+      <div className={styles.progressWrap} aria-hidden="true">
+        <div
+          className={styles.progressBar}
+          style={{ width: `${progressPct}%` }}
+        />
+      </div>
     </div>
   );
 }

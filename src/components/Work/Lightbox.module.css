@@ -1,0 +1,151 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: rgba(20, 12, 8, .72);
+  backdrop-filter: blur(8px);
+  padding: 2rem;
+  animation: fadeIn var(--duration-slow) var(--ease-standard);
+}
+
+.dialog {
+  position: relative;
+  width: min(640px, 92vw);
+  height: min(640px, 80vh);
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  background: rgba(58, 36, 24, .58);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  animation: scaleIn var(--duration-slow) var(--ease-standard);
+}
+
+/* Dialog background mirrors the parent collection card's theme gradient
+   (see .visual_<theme> in Work.module.css), made translucent so the
+   glass effect picks up the category color the user clicked into. */
+.dialog_navidad     { background: linear-gradient(135deg, rgba(26, 58, 42, .58), rgba(45, 90, 61, .58)); }
+.dialog_animalitos  { background: linear-gradient(135deg, rgba(61, 42, 16, .58), rgba(107, 74, 32, .58)); }
+.dialog_especiales  { background: linear-gradient(135deg, rgba(42, 26, 80, .58), rgba(74, 42, 128, .58)); }
+.dialog_virgencitas { background: linear-gradient(135deg, rgba(26, 42, 85, .58), rgba(42, 64, 112, .58)); }
+.dialog_flores      { background: linear-gradient(135deg, rgba(74, 21, 32, .58), rgba(122, 37, 53, .58)); }
+.dialog_munecas     { background: linear-gradient(135deg, rgba(90, 38, 56, .58), rgba(155, 92, 114, .58)); }
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  filter: drop-shadow(0 14px 32px rgba(0,0,0,.22));
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+.imageLoaded {
+  opacity: 1;
+}
+
+.loader {
+  position: relative;
+  z-index: 1;
+  padding: .45rem .85rem;
+  border-radius: var(--r-full);
+  background: var(--surface-cream-90);
+  color: var(--brown-warm);
+  font-family: var(--font-sans);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 5;
+  background: var(--surface-cream-90);
+  backdrop-filter: blur(8px);
+  border: none;
+  border-radius: 50%;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--brown);
+  display: grid;
+  place-items: center;
+  transition: background .2s ease, transform .2s ease;
+}
+.closeBtn:hover { background: var(--white); transform: scale(1.08); }
+.closeBtn:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 2px; }
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: var(--surface-cream-90);
+  backdrop-filter: blur(8px);
+  border: none;
+  border-radius: 50%;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  font-size: 1.05rem;
+  cursor: pointer;
+  color: var(--brown);
+  display: grid;
+  place-items: center;
+  transition: background .2s ease, transform .2s ease;
+}
+.navBtn:hover { background: var(--white); transform: translateY(-50%) scale(1.1); }
+.navBtn:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 2px; }
+.navBtnPrev { left: .85rem; }
+.navBtnNext { right: .85rem; }
+
+.counter {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--surface-cream-90);
+  backdrop-filter: blur(8px);
+  padding: .35rem .9rem;
+  border-radius: var(--r-full);
+  font-family: var(--font-sans);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: var(--brown-warm);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 640px) {
+  .dialog { width: min(440px, 94vw); height: min(560px, 72vh); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop, .dialog { animation: none; }
+}

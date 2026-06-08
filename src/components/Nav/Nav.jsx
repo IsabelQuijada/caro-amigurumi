@@ -44,15 +44,18 @@ export default function Nav() {
       aria-label="Navegación principal"
     >
       <a href="#hero" className={styles.logo}>
-        <span className={styles.logoCq} aria-hidden="true">CQ</span>
-        <span className={styles.logoText}>Carolina Quijada</span>
+        <img
+          src="/Assets/carolinaLogo-nav.png"
+          alt="Carolina Quijada"
+          className={styles.logoImg}
+        />
       </a>
 
       <button
-        className={styles.burger}
+        className={`${styles.burger} ${open ? styles.burgerOpen : ''}`}
         id="burger"
         ref={burgerRef}
-        aria-label="Abrir menú"
+        aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
         aria-expanded={open}
         aria-controls="navLinks"
         onClick={() => setOpen(v => !v)}
@@ -72,7 +75,6 @@ export default function Nav() {
             <a
               href={href}
               aria-current={active === href.slice(1) ? 'true' : undefined}
-              style={{ color: active === href.slice(1) ? 'var(--terracotta)' : '' }}
               onClick={() => setOpen(false)}
             >
               {label}

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ' *)",
+      "Read(//private/tmp/**)",
+      "Bash(npm install *)",
+      "Bash(npx playwright *)",
+      "Bash(NODE_PATH=/tmp/node_modules node /tmp/shot4.mjs)",
+      "Bash(NODE_PATH=/tmp/node_modules node /tmp/check.mjs)"
+    ],
+    "additionalDirectories": [
+      "/tmp",
+      "/private/tmp"
+    ]
+  }
+}

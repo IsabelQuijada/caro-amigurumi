@@ -5,11 +5,11 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.brand}>
-          <span className={styles.cq} aria-hidden="true">CQ</span>
-          <div>
-            <span className={styles.name}>Carolina Quijada</span>
-            <span className={styles.tagline}>Hecho con estambre y corazón</span>
-          </div>
+          <img
+            src="/Assets/carolinaLogo-nav.png"
+            alt="Carolina Quijada"
+            className={styles.logoImg}
+          />
         </div>
 
         <nav className={styles.nav} aria-label="Footer">

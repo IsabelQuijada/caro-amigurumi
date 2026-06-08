@@ -1,6 +1,6 @@
 .work {
-  padding: 8rem 6% 9rem;
-  background: var(--cream);
+  padding: 6.4rem var(--page-x) 7.2rem;
+  background: var(--cream-warm);
 }
 
 .header {
@@ -10,23 +10,25 @@
   margin-bottom: 3rem;
   gap: 2rem;
   flex-wrap: wrap;
+  min-width: 0;
 }
 
 .sub {
-  font-family: var(--font-script);
-  font-size: 1.2rem;
+  font-size: .86rem;
   color: var(--brown-lt);
-  max-width: 28ch;
+  line-height: 1.6;
+  font-style: italic;
   text-align: right;
-  line-height: 1.5;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 420px 480px;
+  grid-template-rows: repeat(2, 450px);
   gap: 1.2rem;
-  max-width: 1400px;
+  max-width: var(--container-lg);
 }
 
 /* ── Cards ─────────────────────────────────── */
@@ -35,7 +37,7 @@
   border-radius: var(--r-lg);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: transform .4s cubic-bezier(.4,0,.2,1), box-shadow .4s ease;
+  transition: transform var(--duration-slower) var(--ease-standard), box-shadow var(--duration-slower) ease;
   cursor: pointer;
 }
 .card:hover {
@@ -58,6 +60,7 @@
 .visual_especiales { background: linear-gradient(135deg, #2a1a50, #4a2a80); }
 .visual_virgencitas{ background: linear-gradient(135deg, #1a2a55, #2a4070); }
 .visual_flores     { background: linear-gradient(135deg, #4a1520, #7a2535); }
+.visual_munecas    { background: linear-gradient(135deg, #5a2638, #9b5c72); }
 
 /* Overlay */
 .overlay {
@@ -67,17 +70,17 @@
   background: linear-gradient(
     0deg,
     rgba(39,19,8,.92) 0%,
-    rgba(39,19,8,.6)  45%,
+    rgba(39,19,8,.6) 45%,
     transparent 100%
   );
   z-index: 3;
-  transition: background .35s ease;
+  transition: background var(--duration-slow) ease;
 }
 .overlay h3 {
   font-family: var(--font-serif);
   font-size: 1.3rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--white);
   margin-bottom: .4rem;
   line-height: 1.2;
 }
@@ -104,7 +107,7 @@
 .tag {
   position: absolute;
   top: 1rem; left: 1rem;
-  background: rgba(254,248,240,.9);
+  background: var(--surface-cream-90);
   backdrop-filter: blur(8px);
   padding: .35rem .9rem;
   border-radius: var(--r-full);
@@ -127,14 +130,39 @@
 }
 
 @media (max-width: 640px) {
-  .work { padding: 6rem 5% 7rem; }
+  .work { padding: 4.5rem var(--page-x-mobile) 5rem; }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.75rem;
+    gap: .6rem;
+  }
+  .sub {
+    text-align: left;
+    white-space: normal;
+  }
+
   .grid {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    gap: 1rem;
+    gap: .85rem;
   }
   .cardWide { grid-column: span 1; }
-  .visual { height: 300px; }
-  .header { flex-direction: column; align-items: flex-start; }
-  .sub { text-align: left; }
+
+  .visual {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .overlay {
+    padding: 1.4rem 1.15rem 1.15rem;
+  }
+  .overlay h3 { font-size: 1.1rem; }
+  .overlay p {
+    font-size: .82rem;
+    /* hover never fires on touch — show the description by default */
+    opacity: 1;
+    transform: none;
+  }
 }

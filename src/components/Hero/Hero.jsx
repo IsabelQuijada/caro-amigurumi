@@ -10,26 +10,9 @@ export default function Hero() {
       </div>
 
       <div className={styles.inner}>
-        <div className={styles.content}>
-          <div className={styles.eyebrow} aria-hidden="true">
-            <span className={styles.eyebrowDot} />
-            Hecho a mano con amor y estambre
-          </div>
-
-          <h1 id="hero-heading" className={styles.title}>
-            Pequeñas criaturas,<br />
-            <em>grandes corazones</em>
-          </h1>
-
-          <p className={styles.desc}>
-            Cada amigurumi está tejido a mano, punto a punto —
-            pequeños mundos suaves que esperan ser abrazados.
-          </p>
-
-          <div className={styles.actions}>
-            <a href="#work" className="btn btn--primary">Ver la colección</a>
-            <a href="#contact" className="btn btn--ghost">Encargar uno</a>
-          </div>
+        <div className={styles.eyebrow} aria-hidden="true">
+          <span className={styles.eyebrowDot} />
+          Hecho a mano con amor y estambre
         </div>
 
         <div className={styles.visual}>
@@ -42,11 +25,23 @@ export default function Hero() {
             />
           </div>
         </div>
-      </div>
 
-      <div className={styles.scrollHint} aria-hidden="true">
-        <span>Explorar</span>
-        <div className={styles.scrollLine} />
+        <div className={styles.content}>
+          <h1 id="hero-heading" className={styles.title}>
+            <span className={styles.titleLine}>Pequeñas criaturas,</span>
+            <em className={styles.titleLine}>grandes corazones</em>
+          </h1>
+
+          <p className={styles.desc}>
+            Cada amigurumi está tejido a mano, punto a punto —
+            pequeños mundos suaves que esperan ser abrazados.
+          </p>
+
+          <div className={styles.actions}>
+            <a href="#work" className="btn btn--primary">Ver la colección</a>
+            <a href="#contact" className="btn btn--ghost">Encargar uno</a>
+          </div>
+        </div>
       </div>
     </section>
   );
