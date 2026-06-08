@@ -7,6 +7,8 @@ const facts = [
   { num: '∞', label: 'Amor por punto' },
 ];
 
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 export default function About() {
   const introRef  = useFadeIn();
   const cornerRef = useFadeIn();
@@ -27,7 +29,7 @@ export default function About() {
             <div className={styles.card}>
               <div className={styles.frame}>
                 <img
-                  src="/Assets/caroPerfil.png"
+                  src={assetPath('Assets/caroPerfil.png')}
                   alt="Fotografía de Carolina Quijada, artesana"
                   className={styles.photo}
                   loading="lazy"

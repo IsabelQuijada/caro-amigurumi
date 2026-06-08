@@ -11,6 +11,8 @@ const links = [
   { href: '#contact', label: 'Contacto' },
 ];
 
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 export default function Nav() {
   const [open, setOpen]   = useState(false);
   const scrolled          = useScrolled();
@@ -45,7 +47,7 @@ export default function Nav() {
     >
       <a href="#hero" className={styles.logo}>
         <img
-          src="/Assets/carolinaLogo-nav.png"
+          src={assetPath('Assets/carolinaLogo-nav.png')}
           alt="Carolina Quijada"
           className={styles.logoImg}
         />

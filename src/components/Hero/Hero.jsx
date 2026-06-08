@@ -1,5 +1,7 @@
 import styles from './Hero.module.css';
 
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 export default function Hero() {
   return (
     <section className={styles.hero} id="hero" aria-labelledby="hero-heading">
@@ -18,7 +20,7 @@ export default function Hero() {
         <div className={styles.visual}>
           <div className={styles.imgWrap}>
             <img
-              src="/Assets/landingPage.png"
+              src={assetPath('Assets/landingPage.png')}
               alt="Colección de amigurumis de Carolina Quijada — peluches tejidos a mano"
               className={styles.img}
               priority="true"

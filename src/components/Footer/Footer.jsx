@@ -1,12 +1,14 @@
 import styles from './Footer.module.css';
 
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.brand}>
           <img
-            src="/Assets/carolinaLogo-nav.png"
+            src={assetPath('Assets/carolinaLogo-nav.png')}
             alt="Carolina Quijada"
             className={styles.logoImg}
           />
