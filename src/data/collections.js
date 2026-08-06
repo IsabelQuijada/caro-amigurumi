@@ -61,6 +61,7 @@ export const collections = [
       { src: assetPath('Assets/munecas/muneca3.png'), alt: 'Muñeca tejida 3' },
       { src: assetPath('Assets/munecas/muneca4.png'), alt: 'Muñeca tejida 4' },
       { src: assetPath('Assets/munecas/muneca5.png'), alt: 'Muñeca tejida 5' },
+      { src: assetPath('Assets/munecas/muneca6.png'), alt: 'Muñeca tejida 6' },
       { src: assetPath('Assets/munecas/sirena.png'), alt: 'Sirena tejida' },
     ],
   },
